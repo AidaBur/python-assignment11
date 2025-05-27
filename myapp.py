@@ -1,6 +1,7 @@
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import plotly.data as pldata
+import os
 
 df = pldata.gapminder()
 
@@ -35,6 +36,6 @@ def update_graph(country):
     )
     return fig
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(host="0.0.0.0", port=port)
